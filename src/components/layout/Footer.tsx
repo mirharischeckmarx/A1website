@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 
 const col1 = [
@@ -84,15 +85,49 @@ export default function Footer() {
               <p>Kenya — Nairobi</p>
               <p>USA — Boston, MA</p>
             </div>
-            <div className="mt-6 flex gap-4">
-              {["LinkedIn", "GitHub", "Twitter"].map((s) => (
-                <span
-                  key={s}
-                  className="text-[#616160] text-xs hover:text-[#A100FF] cursor-pointer transition-colors"
+            <div className="mt-4 space-y-1 text-[#616160] text-xs">
+              <p>
+                E:{" "}
+                <a
+                  href="mailto:info@a1tecno.com"
+                  className="hover:text-white transition-colors"
                 >
-                  {s}
-                </span>
-              ))}
+                  info@a1tecno.com
+                </a>
+              </p>
+              <p>
+                T:{" "}
+                <a
+                  href="tel:+971566097324"
+                  className="hover:text-white transition-colors"
+                >
+                  +971 56 609 7324
+                </a>
+              </p>
+            </div>
+            <div className="mt-6 flex gap-4">
+              <a
+                href="https://linkedin.com/company/a1technology"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#616160] text-xs hover:text-[#A100FF] transition-colors"
+              >
+                LinkedIn
+              </a>
+              <a
+                href="https://twitter.com/a1aborinnovate"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#616160] text-xs hover:text-[#A100FF] transition-colors"
+              >
+                Twitter
+              </a>
+              <a
+                href="#"
+                className="text-[#616160] text-xs hover:text-[#A100FF] transition-colors"
+              >
+                GitHub
+              </a>
             </div>
           </div>
         </div>
@@ -100,11 +135,11 @@ export default function Footer() {
         {/* Copyright */}
         <div className="mt-16 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="flex items-center gap-3">
-            <span className="text-[#A100FF] text-xl font-bold">&gt;</span>
+            <Image src="/images/brand/a1-logo.png" alt="A1 Technology" width={28} height={24} />
             <span className="text-white text-sm font-medium">A1 Technology</span>
           </div>
           <p className="text-[#616160] text-xs">
-            &copy; 2025 A1 Technology. All rights reserved. Design &amp; Technology by A1 Technology.
+            &copy; {new Date().getFullYear()} A1 Technology. All rights reserved. Design &amp; Technology by A1 Technology.
           </p>
         </div>
       </div>

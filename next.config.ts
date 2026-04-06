@@ -6,6 +6,7 @@ const nextConfig: NextConfig = {
       { protocol: "https", hostname: "logo.clearbit.com" },
       { protocol: "https", hostname: "upload.wikimedia.org" },
       { protocol: "https", hostname: "www.gstatic.com" },
+      { protocol: "https", hostname: "a1tecno.com" },
     ],
   },
 };

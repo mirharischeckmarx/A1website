@@ -1,8 +1,11 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import { motion, AnimatePresence } from "framer-motion";
+
+const Logo3D = dynamic(() => import("@/components/three/Logo3D"), { ssr: false, loading: () => <span className="text-[#A100FF] text-3xl font-bold leading-none">&gt;</span> });
 
 const navLinks = [
   { href: "/services", label: "What We Do" },
@@ -33,9 +36,11 @@ export default function Navbar() {
         }`}
       >
         <div className="max-w-[1920px] mx-auto px-6 md:px-12 lg:px-16 h-16 flex items-center justify-between">
-          {/* Logo — Accenture ">" style mark */}
-          <Link href="/" className="flex items-center gap-3">
-            <span className="text-[#A100FF] text-3xl font-bold leading-none">&gt;</span>
+          {/* Logo */}
+          <Link href="/" className="flex items-center gap-2">
+            <Suspense fallback={<span className="text-[#A100FF] text-3xl font-bold leading-none">&gt;</span>}>
+              <Logo3D />
+            </Suspense>
             <span className="text-white text-lg font-medium tracking-wide">
               A1 Technology
             </span>
@@ -52,13 +57,6 @@ export default function Navbar() {
                 {link.label}
               </Link>
             ))}
-            <Link
-              href="/contact"
-              className="flex items-center gap-2 text-sm font-medium text-white hover:text-[#A100FF] transition-colors"
-            >
-              Get in Touch
-              <span className="chevron-icon text-xs">&gt;</span>
-            </Link>
           </div>
 
           {/* Mobile menu button */}
@@ -66,6 +64,7 @@ export default function Navbar() {
             onClick={() => setMobileOpen(!mobileOpen)}
             className="lg:hidden flex flex-col gap-1.5 p-2"
             aria-label="Toggle menu"
+            aria-expanded={mobileOpen}
           >
             <span className={`w-6 h-0.5 bg-white transition-all duration-300 ${mobileOpen ? "rotate-45 translate-y-2" : ""}`} />
             <span className={`w-6 h-0.5 bg-white transition-all duration-300 ${mobileOpen ? "opacity-0" : ""}`} />
