@@ -1,5 +1,6 @@
 "use client";
 
+import { Suspense } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import GlassCard from "@/components/ui/GlassCard";
@@ -8,16 +9,16 @@ import { ComponentType } from "react";
 
 const ParticleField = dynamic(
   () => import("@/components/three/ParticleField"),
-  { ssr: false }
+  { ssr: false, loading: () => null }
 );
 
 // Domain-specific 3D visualizations
 const vizComponents: Record<string, ComponentType> = {
-  "data-security": dynamic(() => import("@/components/three/DataSecurityViz"), { ssr: false }),
-  "network-security": dynamic(() => import("@/components/three/NetworkSecurityViz"), { ssr: false }),
-  "cloud-security": dynamic(() => import("@/components/three/CloudSecurityViz"), { ssr: false }),
-  "app-security": dynamic(() => import("@/components/three/AppSecurityViz"), { ssr: false }),
-  "info-security": dynamic(() => import("@/components/three/InfoSecurityViz"), { ssr: false }),
+  "data-security": dynamic(() => import("@/components/three/DataSecurityViz"), { ssr: false, loading: () => null }),
+  "network-security": dynamic(() => import("@/components/three/NetworkSecurityViz"), { ssr: false, loading: () => null }),
+  "cloud-security": dynamic(() => import("@/components/three/CloudSecurityViz"), { ssr: false, loading: () => null }),
+  "app-security": dynamic(() => import("@/components/three/AppSecurityViz"), { ssr: false, loading: () => null }),
+  "info-security": dynamic(() => import("@/components/three/InfoSecurityViz"), { ssr: false, loading: () => null }),
 };
 
 interface SubService {

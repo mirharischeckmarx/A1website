@@ -1,13 +1,13 @@
 "use client";
 
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef, useCallback, Suspense } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import { RobertVoice, robertDialogue } from "@/lib/robertSpeech";
 
-const HeroScene3D = dynamic(() => import("@/components/three/HeroScene3D"), { ssr: false });
-const MarqueeCarousel = dynamic(() => import("@/components/ui/MarqueeCarousel"), { ssr: false });
+const HeroScene3D = dynamic(() => import("@/components/three/HeroScene3D"), { ssr: false, loading: () => null });
+const MarqueeCarousel = dynamic(() => import("@/components/ui/MarqueeCarousel"), { ssr: false, loading: () => null });
 
 export default function HeroSection() {
   const [isSpeaking, setIsSpeaking] = useState(false);
@@ -66,7 +66,9 @@ export default function HeroSection() {
       <section className="relative min-h-screen overflow-hidden bg-black">
         {/* 3D Scene — contained within hero only */}
         <div className="absolute inset-0 z-0">
-          <HeroScene3D />
+          <Suspense fallback={null}>
+            <HeroScene3D />
+          </Suspense>
         </div>
 
         {/* Atmospheric glows */}
@@ -158,7 +160,9 @@ export default function HeroSection() {
 
       {/* ═══════════════ MARQUEE — solid bg so no bleed ═══════════════ */}
       <div className="relative z-20 bg-black">
-        <MarqueeCarousel />
+        <Suspense fallback={null}>
+          <MarqueeCarousel />
+        </Suspense>
       </div>
 
       {/* ═══════════════ CAPTION ═══════════════ */}

@@ -8,6 +8,8 @@ export default function HeroScene3D() {
 
   useEffect(() => {
     if (!containerRef.current) return;
+    // Prevent double-mounting from creating duplicate renderers (React Strict Mode)
+    if (containerRef.current.querySelector("canvas")) return;
     const w = containerRef.current.clientWidth;
     const h = containerRef.current.clientHeight;
     const isMobile = w < 768;
@@ -282,12 +284,11 @@ export default function HeroScene3D() {
 
     // ── ANIMATION ──
     let frameId: number;
-    const clock = new THREE.Clock();
+    const startTime = performance.now();
 
     const animate = () => {
       frameId = requestAnimationFrame(animate);
-      const t = clock.getElapsedTime();
-      const delta = clock.getDelta();
+      const t = (performance.now() - startTime) * 0.001;
 
       // Smooth mouse interpolation
       mx += (targetMx - mx) * 0.04;
@@ -387,6 +388,19 @@ export default function HeroScene3D() {
       window.removeEventListener("mousemove", onMouse);
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onResize);
+
+      // Dispose all geometries and materials to prevent WebGL context loss
+      scene.traverse((obj) => {
+        if (obj instanceof THREE.Mesh || obj instanceof THREE.Line || obj instanceof THREE.LineSegments || obj instanceof THREE.Points) {
+          obj.geometry?.dispose();
+          if (Array.isArray(obj.material)) {
+            obj.material.forEach((m) => m.dispose());
+          } else {
+            obj.material?.dispose();
+          }
+        }
+      });
+
       renderer.dispose();
       if (containerRef.current && renderer.domElement.parentNode === containerRef.current)
         containerRef.current.removeChild(renderer.domElement);

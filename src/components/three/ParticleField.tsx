@@ -8,6 +8,7 @@ export default function ParticleField({ density = 1 }: { density?: number }) {
 
   useEffect(() => {
     if (!containerRef.current) return;
+    if (containerRef.current.querySelector("canvas")) return;
 
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(75, containerRef.current.clientWidth / containerRef.current.clientHeight, 0.1, 100);
@@ -73,6 +74,8 @@ export default function ParticleField({ density = 1 }: { density?: number }) {
     return () => {
       cancelAnimationFrame(frameId);
       window.removeEventListener("resize", onResize);
+      geometry.dispose();
+      material.dispose();
       renderer.dispose();
       if (containerRef.current && renderer.domElement.parentNode === containerRef.current) {
         containerRef.current.removeChild(renderer.domElement);

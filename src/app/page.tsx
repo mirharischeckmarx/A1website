@@ -1,15 +1,15 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { useRef, Suspense } from "react";
 import Link from "next/link";
 import HeroSection from "@/components/sections/HeroSection";
 import dynamic from "next/dynamic";
 import GlassCard from "@/components/ui/GlassCard";
 import SectionHeading from "@/components/ui/SectionHeading";
 
-const ThreatDashboard = dynamic(() => import("@/components/ui/ThreatDashboard"), { ssr: false });
-const NetworkGraph = dynamic(() => import("@/components/three/NetworkGraph"), { ssr: false });
+const ThreatDashboard = dynamic(() => import("@/components/ui/ThreatDashboard"), { ssr: false, loading: () => null });
+const NetworkGraph = dynamic(() => import("@/components/three/NetworkGraph"), { ssr: false, loading: () => null });
 
 /* ── DATA ── */
 const solutions = [
@@ -65,7 +65,9 @@ export default function Home() {
             >
               {/* 3D Network Viz */}
               <div className="relative h-[400px] rounded-3xl overflow-hidden border border-white/5 bg-[#0a0a0a]">
-                <NetworkGraph />
+                <Suspense fallback={null}>
+                  <NetworkGraph />
+                </Suspense>
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent z-10" />
 
                 {/* Floating score badge */}
@@ -299,7 +301,9 @@ export default function Home() {
                 ))}
               </div>
             </div>
-            <ThreatDashboard />
+            <Suspense fallback={null}>
+              <ThreatDashboard />
+            </Suspense>
           </div>
         </div>
       </section>
