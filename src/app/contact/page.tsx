@@ -9,6 +9,10 @@ const ContactGlobe = dynamic(
   () => import("@/components/three/ContactGlobe"),
   { ssr: false, loading: () => null },
 );
+const NetworkMap = dynamic(
+  () => import("@/components/ui/NetworkMap"),
+  { ssr: false, loading: () => null },
+);
 
 /* ── Office data ── */
 const offices = [
@@ -634,9 +638,62 @@ export default function ContactPage() {
       </section>
 
       {/* ══════════════════════════════════════════════════════
+          GLOBAL NETWORK — Live light show map
+      ══════════════════════════════════════════════════════ */}
+      <section className="relative bg-[#030818] border-t border-[#0f1a35] overflow-hidden">
+        {/* Header */}
+        <div className="max-w-[1920px] mx-auto px-6 md:px-12 lg:px-16 pt-16 pb-6 relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4"
+          >
+            <div>
+              <span className="text-[#A100FF] text-[10px] uppercase tracking-[0.3em] font-semibold">
+                Live Network
+              </span>
+              <h3 className="text-2xl md:text-3xl font-bold text-white mt-2">
+                Global Security <span className="text-[#A100FF]">Operations</span>
+              </h3>
+              <p className="text-[#4a5a7a] text-sm mt-2 max-w-lg">
+                Real-time visualization of our distributed security mesh connecting 5 continents.
+                Data streams flow 24/7 between our global Security Operations Centers.
+              </p>
+            </div>
+            <div className="flex gap-6">
+              {[
+                { val: "24/7", label: "Monitoring" },
+                { val: "<30s", label: "Response" },
+                { val: "99.99%", label: "Uptime" },
+              ].map((s) => (
+                <div key={s.label} className="text-right">
+                  <span className="text-[#A100FF] text-xl font-bold block">{s.val}</span>
+                  <span className="text-[#3a4a6a] text-[9px] uppercase tracking-wider">{s.label}</span>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Map canvas */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1.5 }}
+          className="relative w-full h-[400px] md:h-[500px]"
+        >
+          <Suspense fallback={null}>
+            <NetworkMap />
+          </Suspense>
+        </motion.div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════════
           BOTTOM CTA
       ══════════════════════════════════════════════════════ */}
-      <section className="bg-[#030818] py-20 border-t border-[#0f1a35]">
+      <section className="bg-[#030818] pt-16 pb-8 border-t border-[#0f1a35]">
         <div className="max-w-3xl mx-auto px-6 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
