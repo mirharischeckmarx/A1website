@@ -1,8 +1,25 @@
+import type { Metadata } from "next";
 import ServiceDetailLayout from "@/components/sections/ServiceDetailLayout";
+import { BreadcrumbJsonLd, ServiceJsonLd } from "@/components/seo/JsonLd";
+
+export const metadata: Metadata = {
+  title: "Managed Security Services — Implementation, Monitoring & SOC Staffing",
+  description:
+    "Managed security services: professional deployment, 24/7 SLA-backed support, SIEM monitoring, SOAR automation, vulnerability assessment, and cybersecurity staff augmentation.",
+  openGraph: {
+    title: "Managed Security Services | A1 Technology",
+    description: "End-to-end managed security: deployment, 24/7 monitoring, incident response, and certified cybersecurity staffing.",
+    url: "https://a1tecno.com/services/managed-services",
+  },
+  alternates: { canonical: "https://a1tecno.com/services/managed-services" },
+};
 
 export default function ManagedServicesPage() {
   return (
-    <ServiceDetailLayout
+    <>
+      <BreadcrumbJsonLd items={[{ name: "Home", url: "/" }, { name: "Services", url: "/services" }, { name: "Managed Services", url: "/services/managed-services" }]} />
+      <ServiceJsonLd name="Managed Security Services" description="Professional deployment, 24/7 monitoring, incident response, and certified cybersecurity staffing." url="/services/managed-services" />
+      <ServiceDetailLayout
       tag="// MANAGED SERVICES"
       title="Managed Services"
       subtitle="IMPLEMENTATION / SUPPORT / MONITORING / STAFFING"
@@ -56,5 +73,6 @@ export default function ManagedServicesPage() {
         },
       ]}
     />
+    </>
   );
 }

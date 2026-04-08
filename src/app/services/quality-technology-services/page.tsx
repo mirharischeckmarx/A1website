@@ -1,8 +1,25 @@
+import type { Metadata } from "next";
 import ServiceDetailLayout from "@/components/sections/ServiceDetailLayout";
+import { BreadcrumbJsonLd, ServiceJsonLd } from "@/components/seo/JsonLd";
+
+export const metadata: Metadata = {
+  title: "Quality Technology Services — QE, Observability, AI & Automation",
+  description:
+    "Quality technology services: quality engineering with 63% testing time reduction, full-stack observability, AIOps, AI engineering, and intelligent business process automation.",
+  openGraph: {
+    title: "Quality Technology Services | A1 Technology",
+    description: "Next-gen quality engineering, observability platforms, AI adoption, and intelligent automation for enterprises.",
+    url: "https://a1tecno.com/services/quality-technology-services",
+  },
+  alternates: { canonical: "https://a1tecno.com/services/quality-technology-services" },
+};
 
 export default function QualityTechnologyServicesPage() {
   return (
-    <ServiceDetailLayout
+    <>
+      <BreadcrumbJsonLd items={[{ name: "Home", url: "/" }, { name: "Services", url: "/services" }, { name: "Quality Technology Services", url: "/services/quality-technology-services" }]} />
+      <ServiceJsonLd name="Quality Technology Services" description="Quality engineering, observability, AI engineering, and intelligent automation for enterprises." url="/services/quality-technology-services" />
+      <ServiceDetailLayout
       tag="// QUALITY TECHNOLOGY SERVICES"
       title="Quality Technology Services"
       subtitle="QE / OBSERVABILITY / AI ENGINEERING / AUTOMATION"
@@ -66,5 +83,6 @@ export default function QualityTechnologyServicesPage() {
         },
       ]}
     />
+    </>
   );
 }

@@ -77,7 +77,7 @@ const offices = [
   },
   {
     region: "ZA",
-    city: "Johannesburg",
+    city: "Centurion",
     country: "South Africa",
     role: "Southern Africa Hub",
     top: "72%",
@@ -326,7 +326,7 @@ export default function AboutPage() {
           <SectionHeading
             tag="// A PARTNER YOU CAN RELY ON"
             title="A Security and Network Partner You Can Rely On"
-            description="We have over half a decade of experience in security and networking for enterprises, data centers and telecommunication companies. This sets us apart from pure players in the enterprise security industry."
+            description="We have over a decade of experience in security and networking for enterprises, data centers and telecommunication companies. This sets us apart from pure players in the enterprise security industry."
           />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {differentiators.map((item, i) => (

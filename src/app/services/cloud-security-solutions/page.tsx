@@ -1,8 +1,25 @@
+import type { Metadata } from "next";
 import ServiceDetailLayout from "@/components/sections/ServiceDetailLayout";
+import { BreadcrumbJsonLd, ServiceJsonLd } from "@/components/seo/JsonLd";
+
+export const metadata: Metadata = {
+  title: "Cloud Security Solutions — CASB, CNAPP, CSPM, Zero Trust & IAM",
+  description:
+    "Enterprise cloud security: CASB, CNAPP, CSPM, CWP, Kubernetes security, IAM, zero trust architecture, and IPS/IDS for AWS, Azure, and GCP environments.",
+  openGraph: {
+    title: "Cloud Security Solutions | A1 Technology",
+    description: "Full-spectrum cloud security: zero trust, CASB, CNAPP, CSPM, IAM, and workload protection across AWS, Azure, and GCP.",
+    url: "https://a1tecno.com/services/cloud-security-solutions",
+  },
+  alternates: { canonical: "https://a1tecno.com/services/cloud-security-solutions" },
+};
 
 export default function CloudSecuritySolutionsPage() {
   return (
-    <ServiceDetailLayout
+    <>
+      <BreadcrumbJsonLd items={[{ name: "Home", url: "/" }, { name: "Services", url: "/services" }, { name: "Cloud Security Solutions", url: "/services/cloud-security-solutions" }]} />
+      <ServiceJsonLd name="Cloud Security Solutions" description="Zero trust, CASB, CNAPP, CSPM, IAM, and workload protection across AWS, Azure, and GCP." url="/services/cloud-security-solutions" />
+      <ServiceDetailLayout
       tag="// CLOUD SECURITY SOLUTIONS"
       title="Cloud Security Solutions"
       subtitle="CASB / CNAPP / CSPM / CWP / IAM / ZERO TRUST"
@@ -79,5 +96,6 @@ export default function CloudSecuritySolutionsPage() {
         },
       ]}
     />
+    </>
   );
 }

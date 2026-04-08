@@ -1,8 +1,25 @@
+import type { Metadata } from "next";
 import ServiceDetailLayout from "@/components/sections/ServiceDetailLayout";
+import { BreadcrumbJsonLd, ServiceJsonLd } from "@/components/seo/JsonLd";
+
+export const metadata: Metadata = {
+  title: "Network Security Assessment — VAPT, Wireless & Architecture Review",
+  description:
+    "Professional network security assessments: penetration testing (VAPT), wireless security, architecture review, server hardening, Active Directory audits, and CIS/NIST compliance.",
+  openGraph: {
+    title: "Network Security Assessment | A1 Technology",
+    description: "Offensive security assessments: VAPT, wireless testing, architecture review, and compliance-aligned server hardening.",
+    url: "https://a1tecno.com/services/network-security-assessment",
+  },
+  alternates: { canonical: "https://a1tecno.com/services/network-security-assessment" },
+};
 
 export default function NetworkSecurityAssessmentPage() {
   return (
-    <ServiceDetailLayout
+    <>
+      <BreadcrumbJsonLd items={[{ name: "Home", url: "/" }, { name: "Services", url: "/services" }, { name: "Network Security Assessment", url: "/services/network-security-assessment" }]} />
+      <ServiceJsonLd name="Network Security Assessment" description="Professional VAPT, wireless security, architecture review, and CIS/NIST-aligned server hardening." url="/services/network-security-assessment" />
+      <ServiceDetailLayout
       tag="// NETWORK SECURITY ASSESSMENT"
       title="Network Security Assessment"
       subtitle="VAPT / WIRELESS / ARCHITECTURE / HARDENING"
@@ -64,5 +81,6 @@ export default function NetworkSecurityAssessmentPage() {
         },
       ]}
     />
+    </>
   );
 }

@@ -27,7 +27,7 @@ interface ThreatEntry {
 
 export default function ThreatDashboard() {
   const [threats, setThreats] = useState<ThreatEntry[]>([]);
-  const [blockedCount, setBlockedCount] = useState(147892);
+  const [, setBlockedCount] = useState(0);
 
   useEffect(() => {
     // Generate initial threats
@@ -56,11 +56,11 @@ export default function ThreatDashboard() {
         <div className="flex items-center gap-3">
           <span className="w-2 h-2 rounded-full bg-[#A100FF] animate-pulse" />
           <span className="text-[#A100FF] text-xs uppercase tracking-[0.2em] font-mono font-semibold">
-            Live Threat Monitor
+            SOC Threat Monitor
           </span>
         </div>
         <span className="text-gray-600 text-xs font-mono">
-          {blockedCount.toLocaleString()} threats neutralized
+          Simulation &bull; 24/7 SOC Operations
         </span>
       </div>
 
@@ -106,9 +106,9 @@ export default function ThreatDashboard() {
 
       {/* Bottom bar */}
       <div className="mt-4 pt-4 border-t border-gray-900 flex justify-between text-[10px] text-gray-600 font-mono">
-        <span>PROTOCOL: ACTIVE DEFENSE v4.2</span>
-        <span>ENCRYPTION: AES-256-GCM</span>
-        <span className="hidden sm:inline">LATENCY: 0.3ms</span>
+        <span>MODE: CONTINUOUS MONITORING</span>
+        <span>COVERAGE: 5 REGIONS</span>
+        <span className="hidden sm:inline">STATUS: OPERATIONAL</span>
       </div>
     </div>
   );

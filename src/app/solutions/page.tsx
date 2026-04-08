@@ -300,7 +300,7 @@ export default function SolutionsPage() {
               A1 Technology services provide businesses with an edge over the
               competition. Outsourced IT and security services improve
               efficiency, build trust with customers, and can be tailored to
-              meet your specific goals — from startup to Fortune 500.
+              meet your specific goals — from growing enterprises to global organizations.
             </p>
             <Link href="/contact" className="cyber-btn cyber-btn-filled">
               Get in Touch

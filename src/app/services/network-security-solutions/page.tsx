@@ -1,8 +1,25 @@
+import type { Metadata } from "next";
 import ServiceDetailLayout from "@/components/sections/ServiceDetailLayout";
+import { BreadcrumbJsonLd, ServiceJsonLd } from "@/components/seo/JsonLd";
+
+export const metadata: Metadata = {
+  title: "Network Security Solutions — Management, Anti-Ransomware & Endpoint Protection",
+  description:
+    "Enterprise network security solutions: network management, anti-ransomware defense, DNS/DHCP security, vulnerability management, endpoint protection, and advanced malware analysis.",
+  openGraph: {
+    title: "Network Security Solutions | A1 Technology",
+    description: "Multi-layered network security: anti-ransomware, endpoint protection, vulnerability management, and 24/7 monitoring.",
+    url: "https://a1tecno.com/services/network-security-solutions",
+  },
+  alternates: { canonical: "https://a1tecno.com/services/network-security-solutions" },
+};
 
 export default function NetworkSecuritySolutionsPage() {
   return (
-    <ServiceDetailLayout
+    <>
+      <BreadcrumbJsonLd items={[{ name: "Home", url: "/" }, { name: "Services", url: "/services" }, { name: "Network Security Solutions", url: "/services/network-security-solutions" }]} />
+      <ServiceJsonLd name="Network Security Solutions" description="Enterprise network security with anti-ransomware, endpoint protection, vulnerability management, and 24/7 monitoring." url="/services/network-security-solutions" />
+      <ServiceDetailLayout
       tag="// NETWORK SECURITY SOLUTIONS"
       title="Network Security Solutions"
       subtitle="MANAGEMENT / ANTI-RANSOMWARE / DNS / ENDPOINT / MALWARE"
@@ -59,5 +76,6 @@ export default function NetworkSecuritySolutionsPage() {
         },
       ]}
     />
+    </>
   );
 }

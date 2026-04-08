@@ -36,10 +36,10 @@ const features = [
 ];
 
 const clients = [
-  { quote: "A1 Technology transformed our security posture. Their SOC team detected threats we didn't know existed.", name: "Chief Information Security Officer", company: "Fortune 500 Bank" },
-  { quote: "The zero-trust implementation was flawless. 78 days, 50,000 users, passed compliance on first attempt.", name: "Director of IT Security", company: "Government Agency" },
-  { quote: "Their managed services freed our team to focus on innovation while they handled the threat landscape.", name: "VP of Engineering", company: "Healthcare Network" },
-  { quote: "The penetration testing uncovered critical vulnerabilities our previous vendor missed entirely.", name: "Head of Cybersecurity", company: "Enterprise SaaS" },
+  { quote: "A1 Technology delivered direct access to certified engineers who understood our infrastructure from day one. Their SOC operations gave us the visibility we never had.", name: "CISO", company: "Financial Services Enterprise" },
+  { quote: "Their zero-trust architecture deployment was executed with precision — peer-to-peer engagement with our team, no barriers, no scripts. Exactly what we needed.", name: "Director of IT Security", company: "Government Organization" },
+  { quote: "We moved from fragmented tools to a unified security platform. A1's managed services let our team focus on innovation while they handled the threat landscape.", name: "VP of Engineering", company: "Healthcare Provider" },
+  { quote: "The penetration testing and vulnerability assessment uncovered gaps our previous vendor missed. Their lean, agile approach meant faster remediation cycles.", name: "Head of Cybersecurity", company: "Enterprise Technology Company" },
 ];
 
 export default function Home() {
@@ -80,8 +80,8 @@ export default function Home() {
                 >
                   <div className="w-20 h-20 rounded-full border-[3px] border-[#A100FF] flex items-center justify-center bg-black/80 backdrop-blur-xl">
                     <div className="text-center">
-                      <span className="text-white text-2xl font-bold block leading-none">98</span>
-                      <span className="text-[#A100FF] text-[8px] uppercase tracking-wider">Score</span>
+                      <span className="text-white text-2xl font-bold block leading-none">5+</span>
+                      <span className="text-[#A100FF] text-[8px] uppercase tracking-wider">Years</span>
                     </div>
                   </div>
                 </motion.div>
@@ -97,8 +97,8 @@ export default function Home() {
                   <div className="flex items-center gap-3">
                     <span className="w-2 h-2 rounded-full bg-[#A100FF] animate-pulse" />
                     <div>
-                      <span className="text-white text-sm font-semibold block">2,847 Threats</span>
-                      <span className="text-[#616160] text-[10px]">Neutralized today</span>
+                      <span className="text-white text-sm font-semibold block">30+ Partners</span>
+                      <span className="text-[#616160] text-[10px]">Solution ecosystem</span>
                     </div>
                   </div>
                 </motion.div>

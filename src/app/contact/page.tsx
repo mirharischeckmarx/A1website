@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, FormEvent, Suspense, useCallback } from "react";
+import { useState, useEffect, FormEvent, Suspense, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import dynamic from "next/dynamic";
 import Link from "next/link";
@@ -97,6 +97,21 @@ export default function ContactPage() {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [activeOffice, setActiveOffice] = useState(0);
   const [focusOffice, setFocusOffice] = useState<number | undefined>(undefined);
+
+  // Smart office detection: auto-select nearest office based on timezone
+  useEffect(() => {
+    try {
+      const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+      const offset = new Date().getTimezoneOffset();
+      if (tz.startsWith("Asia/") && offset <= -300) setActiveOffice(0);       // India
+      else if (tz.startsWith("Asia/Dubai") || tz.startsWith("Asia/Riyadh") || (offset === -240)) setActiveOffice(1); // UAE
+      else if (tz.startsWith("Africa/Johannesburg") || tz.startsWith("Africa/Harare")) setActiveOffice(2); // SA
+      else if (tz.startsWith("Africa/Nairobi") || tz.startsWith("Africa/Kampala")) setActiveOffice(3); // Kenya
+      else if (tz.startsWith("America/")) setActiveOffice(4);                 // USA
+    } catch {
+      // Fallback to default (India HQ)
+    }
+  }, []);
 
   const handleOfficeSelect = useCallback((idx: number) => {
     setActiveOffice(idx);

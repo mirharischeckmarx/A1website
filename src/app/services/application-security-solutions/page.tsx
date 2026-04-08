@@ -1,8 +1,25 @@
+import type { Metadata } from "next";
 import ServiceDetailLayout from "@/components/sections/ServiceDetailLayout";
+import { BreadcrumbJsonLd, ServiceJsonLd } from "@/components/seo/JsonLd";
+
+export const metadata: Metadata = {
+  title: "Application Security Solutions — Cloud, Source Code, Mobile & Web Security",
+  description:
+    "Application security solutions: cloud security assessment, source code audits (SAST), mobile app security for iOS/Android, and OWASP-focused web application penetration testing.",
+  openGraph: {
+    title: "Application Security Solutions | A1 Technology",
+    description: "Secure your applications from code to cloud: SAST, mobile security, web app pentesting, and cloud-native protection.",
+    url: "https://a1tecno.com/services/application-security-solutions",
+  },
+  alternates: { canonical: "https://a1tecno.com/services/application-security-solutions" },
+};
 
 export default function ApplicationSecuritySolutionsPage() {
   return (
-    <ServiceDetailLayout
+    <>
+      <BreadcrumbJsonLd items={[{ name: "Home", url: "/" }, { name: "Services", url: "/services" }, { name: "Application Security Solutions", url: "/services/application-security-solutions" }]} />
+      <ServiceJsonLd name="Application Security Solutions" description="Secure applications from code to cloud: SAST, mobile security, web app pentesting, and cloud-native protection." url="/services/application-security-solutions" />
+      <ServiceDetailLayout
       tag="// APPLICATION SECURITY SOLUTIONS"
       title="Application Security Solutions"
       subtitle="CLOUD / SOURCE CODE / MOBILE / WEB"
@@ -55,5 +72,6 @@ export default function ApplicationSecuritySolutionsPage() {
         },
       ]}
     />
+    </>
   );
 }

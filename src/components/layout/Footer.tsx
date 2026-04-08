@@ -20,7 +20,7 @@ const col2 = [
 
 export default function Footer() {
   return (
-    <footer className="bg-black border-t border-white/5">
+    <footer role="contentinfo" className="bg-black border-t border-white/5">
       <div className="max-w-[1920px] mx-auto px-6 md:px-12 lg:px-16 py-10">
         {/* Top row — tagline + links + offices all in one row */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 items-start">
@@ -68,11 +68,14 @@ export default function Footer() {
               <p>Kenya — Nairobi</p>
               <p>USA — Boston, MA</p>
             </div>
-            <div className="mt-3 flex gap-3 text-[11px]">
+            <div className="mt-3 flex flex-wrap gap-3 text-[11px]">
               <a href="mailto:info@a1tecno.com" className="text-[#616160] hover:text-[#A100FF] transition-colors">info@a1tecno.com</a>
+              <a href="mailto:career@a1tecno.com" className="text-[#616160] hover:text-[#A100FF] transition-colors">career@a1tecno.com</a>
               <span className="text-[#2a2a2a]">|</span>
-              <a href="https://linkedin.com/company/a1technology" target="_blank" rel="noopener noreferrer" className="text-[#616160] hover:text-[#A100FF] transition-colors">LinkedIn</a>
-              <a href="https://twitter.com/a1aborinnovate" target="_blank" rel="noopener noreferrer" className="text-[#616160] hover:text-[#A100FF] transition-colors">Twitter</a>
+              <a href="https://www.linkedin.com/company/a1-technology/" target="_blank" rel="noopener noreferrer" className="text-[#616160] hover:text-[#A100FF] transition-colors">LinkedIn</a>
+              <a href="https://x.com/a1technology" target="_blank" rel="noopener noreferrer" className="text-[#616160] hover:text-[#A100FF] transition-colors">X</a>
+              <a href="https://www.facebook.com/a1technology" target="_blank" rel="noopener noreferrer" className="text-[#616160] hover:text-[#A100FF] transition-colors">Facebook</a>
+              <a href="https://www.youtube.com/@a1technology" target="_blank" rel="noopener noreferrer" className="text-[#616160] hover:text-[#A100FF] transition-colors">YouTube</a>
             </div>
           </div>
         </div>

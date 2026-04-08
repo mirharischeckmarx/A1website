@@ -12,79 +12,79 @@ const ParticleField = dynamic(
 
 const caseStudies = [
   {
-    title: "Fortune 100 Bank — Ransomware Neutralization",
+    title: "Banking Enterprise — Ransomware Defense Deployment",
     industry: "Financial Services",
     scenario:
-      "A coordinated ransomware attack targeted 12,000 endpoints across 3 continents during off-hours, deploying a novel variant that bypassed legacy signature-based detection.",
+      "A major banking enterprise faced escalating ransomware threats across their distributed infrastructure. Legacy signature-based detection was failing against evolving attack variants, and incident response relied on manual workflows.",
     before: {
       label: "Before A1 Technology",
       stats: [
-        "12-hour average detection time",
-        "Manual incident response",
-        "3 prior successful breaches",
-        "$4.2M annual breach costs",
+        "Slow detection relying on legacy tools",
+        "Manual, uncoordinated incident response",
+        "Multiple security tool silos",
+        "No unified threat visibility",
       ],
     },
     after: {
       label: "After A1 Technology",
       stats: [
-        "0.3s AI-powered detection",
-        "Fully automated containment",
-        "Zero successful breaches",
-        "89% cost reduction",
+        "Real-time threat detection via SIEM/SOAR",
+        "Automated containment playbooks",
+        "Unified security operations center",
+        "Continuous 24/7 monitoring",
       ],
     },
-    roi: "340% ROI in year one. Zero data exfiltration. Full operational continuity maintained.",
+    roi: "Dramatically reduced detection-to-response time. Achieved unified visibility and automated incident workflows across all banking operations.",
   },
   {
-    title: "Government Agency — Zero Trust Migration",
+    title: "Government Organization — Zero Trust Architecture",
     industry: "Government & Defense",
     scenario:
-      "A federal defense agency required complete zero-trust transformation across classified and unclassified networks spanning 50,000 users in 90 days to meet new compliance mandates.",
+      "A government organization needed to migrate from perimeter-based security to a zero-trust architecture across their network to meet evolving compliance mandates and enable secure remote access for their workforce.",
     before: {
       label: "Before A1 Technology",
       stats: [
-        "Perimeter-based legacy security",
+        "Perimeter-based legacy security model",
         "VPN-only remote access",
-        "No identity verification at app layer",
-        "Failed 3 compliance audits",
+        "No identity verification at application layer",
+        "Compliance gaps in multiple frameworks",
       ],
     },
     after: {
       label: "After A1 Technology",
       stats: [
-        "Full zero-trust architecture",
-        "SASE-based secure access",
+        "Full zero-trust architecture deployed",
+        "SASE-based secure access for all users",
         "Continuous identity validation",
-        "100% compliance achieved",
+        "Compliance achieved across required frameworks",
       ],
     },
-    roi: "Deployed in 78 days. Passed FedRAMP audit on first attempt. 60% reduction in access-related incidents.",
+    roi: "Successful zero-trust migration completed on schedule. Passed compliance audits and significantly reduced access-related security incidents.",
   },
   {
-    title: "Healthcare Network — HIPAA Fortress",
+    title: "Healthcare Network — Compliance & Security Overhaul",
     industry: "Healthcare",
     scenario:
-      "A 200-hospital healthcare network needed comprehensive security overhaul after a breach exposed 2.1 million patient records, triggering regulatory action and $15M in penalties.",
+      "A large healthcare network with multiple facilities needed a comprehensive security overhaul to address regulatory compliance gaps, fragmented security tooling, and lack of centralized threat visibility across their entire operation.",
     before: {
       label: "Before A1 Technology",
       stats: [
-        "Fragmented security tools",
-        "No centralized visibility",
-        "2.1M records breached",
-        "$15M in penalties",
+        "Fragmented, disconnected security tools",
+        "No centralized visibility or monitoring",
+        "Compliance gaps across facilities",
+        "Uncoordinated incident response",
       ],
     },
     after: {
       label: "After A1 Technology",
       stats: [
-        "Unified security platform",
-        "24/7 SOC monitoring",
-        "Zero breaches post-deployment",
-        "Full HIPAA compliance",
+        "Unified security platform across all facilities",
+        "24/7 SOC monitoring and incident response",
+        "Full regulatory compliance achieved",
+        "Centralized threat intelligence and reporting",
       ],
     },
-    roi: "Prevented estimated $40M in potential breach costs. Achieved continuous HIPAA compliance across all 200 facilities.",
+    roi: "Achieved continuous compliance across all facilities. Unified security operations and established proactive threat monitoring organization-wide.",
   },
 ];
 

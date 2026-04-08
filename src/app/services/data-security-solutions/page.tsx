@@ -1,8 +1,25 @@
+import type { Metadata } from "next";
 import ServiceDetailLayout from "@/components/sections/ServiceDetailLayout";
+import { BreadcrumbJsonLd, ServiceJsonLd } from "@/components/seo/JsonLd";
+
+export const metadata: Metadata = {
+  title: "Data Security Solutions — DLP, Classification & Configuration Management",
+  description:
+    "Enterprise data security: configuration management, URL/content filtering, secure web gateway, and automated data classification for PII, PHI, and PCI compliance.",
+  openGraph: {
+    title: "Data Security Solutions | A1 Technology",
+    description: "Protect sensitive data: DLP, automated classification, configuration management, and compliance-driven data governance.",
+    url: "https://a1tecno.com/services/data-security-solutions",
+  },
+  alternates: { canonical: "https://a1tecno.com/services/data-security-solutions" },
+};
 
 export default function DataSecuritySolutionsPage() {
   return (
-    <ServiceDetailLayout
+    <>
+      <BreadcrumbJsonLd items={[{ name: "Home", url: "/" }, { name: "Services", url: "/services" }, { name: "Data Security Solutions", url: "/services/data-security-solutions" }]} />
+      <ServiceJsonLd name="Data Security Solutions" description="DLP, automated classification, configuration management, and compliance-driven data governance." url="/services/data-security-solutions" />
+      <ServiceDetailLayout
       tag="// DATA SECURITY SOLUTIONS"
       title="Data Security Solutions"
       subtitle="CONFIGURATION / FILTERING / CLASSIFICATION"
@@ -44,5 +61,6 @@ export default function DataSecuritySolutionsPage() {
         },
       ]}
     />
+    </>
   );
 }

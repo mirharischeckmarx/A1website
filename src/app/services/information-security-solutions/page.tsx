@@ -1,8 +1,25 @@
+import type { Metadata } from "next";
 import ServiceDetailLayout from "@/components/sections/ServiceDetailLayout";
+import { BreadcrumbJsonLd, ServiceJsonLd } from "@/components/seo/JsonLd";
+
+export const metadata: Metadata = {
+  title: "Information Security Solutions — SIEM, SOAR, UBA & AI Threat Hunting",
+  description:
+    "Information security solutions: next-gen SIEM, SOAR automation, user behavior analytics, cyber risk scoring, enterprise encryption, and AI-powered threat hunting services.",
+  openGraph: {
+    title: "Information Security Solutions | A1 Technology",
+    description: "Advanced InfoSec: SIEM, SOAR orchestration, UBA, encryption, and AI-driven threat hunting for enterprise protection.",
+    url: "https://a1tecno.com/services/information-security-solutions",
+  },
+  alternates: { canonical: "https://a1tecno.com/services/information-security-solutions" },
+};
 
 export default function InformationSecuritySolutionsPage() {
   return (
-    <ServiceDetailLayout
+    <>
+      <BreadcrumbJsonLd items={[{ name: "Home", url: "/" }, { name: "Services", url: "/services" }, { name: "Information Security Solutions", url: "/services/information-security-solutions" }]} />
+      <ServiceJsonLd name="Information Security Solutions" description="Next-gen SIEM, SOAR orchestration, UBA, encryption, and AI-driven threat hunting." url="/services/information-security-solutions" />
+      <ServiceDetailLayout
       tag="// INFORMATION SECURITY SOLUTIONS"
       title="Information Security Solutions"
       subtitle="SIEM / SOAR / UBA / ENCRYPTION / AI HUNTING"
@@ -69,5 +86,6 @@ export default function InformationSecuritySolutionsPage() {
         },
       ]}
     />
+    </>
   );
 }

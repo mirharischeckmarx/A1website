@@ -98,7 +98,7 @@ const capabilities = [
   {
     abbr: "SOAR",
     title: "Security Orchestration & Automation",
-    description: "Automated workflows for faster incident response — 90% of alerts resolved autonomously in under 30 seconds.",
+    description: "Automated workflows for faster incident response — orchestrate multi-vendor tools, automate playbooks, and accelerate resolution.",
   },
   {
     abbr: "NGFW",

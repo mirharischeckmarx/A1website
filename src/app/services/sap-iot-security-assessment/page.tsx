@@ -1,8 +1,25 @@
+import type { Metadata } from "next";
 import ServiceDetailLayout from "@/components/sections/ServiceDetailLayout";
+import { BreadcrumbJsonLd, ServiceJsonLd } from "@/components/seo/JsonLd";
+
+export const metadata: Metadata = {
+  title: "SAP & IoT Security Assessment — VAPT, Source Code & Firmware Analysis",
+  description:
+    "Specialized SAP and IoT security: SAP vulnerability assessment, penetration testing, ABAP code review, database security, and IoT firmware analysis with protocol testing.",
+  openGraph: {
+    title: "SAP & IoT Security Assessment | A1 Technology",
+    description: "Protect business-critical SAP systems and IoT infrastructure: VAPT, code review, database security, and firmware analysis.",
+    url: "https://a1tecno.com/services/sap-iot-security-assessment",
+  },
+  alternates: { canonical: "https://a1tecno.com/services/sap-iot-security-assessment" },
+};
 
 export default function SapIotSecurityAssessmentPage() {
   return (
-    <ServiceDetailLayout
+    <>
+      <BreadcrumbJsonLd items={[{ name: "Home", url: "/" }, { name: "Services", url: "/services" }, { name: "SAP & IoT Security Assessment", url: "/services/sap-iot-security-assessment" }]} />
+      <ServiceJsonLd name="SAP & IoT Security Assessment" description="SAP VAPT, ABAP code review, database security, and IoT firmware analysis." url="/services/sap-iot-security-assessment" />
+      <ServiceDetailLayout
       tag="// SAP & IoT SECURITY"
       title="SAP & IoT Security Assessment"
       subtitle="SAP VAPT / SOURCE CODE / DATABASE / IoT"
@@ -52,5 +69,6 @@ export default function SapIotSecurityAssessmentPage() {
         },
       ]}
     />
+    </>
   );
 }
