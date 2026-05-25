@@ -3,13 +3,13 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef, Suspense } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import HeroSection from "@/components/sections/HeroSection";
 import dynamic from "next/dynamic";
 import GlassCard from "@/components/ui/GlassCard";
 import SectionHeading from "@/components/ui/SectionHeading";
 
 const ThreatDashboard = dynamic(() => import("@/components/ui/ThreatDashboard"), { ssr: false, loading: () => null });
-const NetworkGraph = dynamic(() => import("@/components/three/NetworkGraph"), { ssr: false, loading: () => null });
 
 /* ── DATA ── */
 const solutions = [
@@ -63,12 +63,17 @@ export default function Home() {
               style={{ y: purposeY }}
               className="lg:col-span-5 relative"
             >
-              {/* 3D Network Viz */}
-              <div className="relative h-[400px] rounded-3xl overflow-hidden border border-white/5 bg-[#0a0a0a]">
-                <Suspense fallback={null}>
-                  <NetworkGraph />
-                </Suspense>
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent z-10" />
+              {/* Photo — real engineers, real workspace */}
+              <div className="relative h-[460px] rounded-3xl overflow-hidden border border-white/5 bg-[#0a0a0a]">
+                <Image
+                  src="/images/photography/soc-analyst.jpg"
+                  alt="A1 Technology security engineers reviewing real-time threat telemetry"
+                  fill
+                  sizes="(max-width: 1024px) 90vw, 580px"
+                  className="object-cover"
+                  priority
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/40 to-transparent z-10" />
 
                 {/* Floating score badge */}
                 <motion.div
@@ -80,7 +85,7 @@ export default function Home() {
                 >
                   <div className="w-20 h-20 rounded-full border-[3px] border-[#A100FF] flex items-center justify-center bg-black/80 backdrop-blur-xl">
                     <div className="text-center">
-                      <span className="text-white text-2xl font-bold block leading-none">5+</span>
+                      <span className="text-white text-2xl font-bold block leading-none tabular">5+</span>
                       <span className="text-[#A100FF] text-[8px] uppercase tracking-wider">Years</span>
                     </div>
                   </div>
@@ -295,7 +300,7 @@ export default function Home() {
                   { val: "99.99%", lab: "Uptime" },
                 ].map((s) => (
                   <div key={s.lab}>
-                    <span className="text-[#A100FF] text-2xl font-semibold block">{s.val}</span>
+                    <span className="text-[#A100FF] text-2xl font-semibold block tabular">{s.val}</span>
                     <span className="text-[#616160] text-[10px] uppercase tracking-wider">{s.lab}</span>
                   </div>
                 ))}
@@ -304,6 +309,81 @@ export default function Home() {
             <Suspense fallback={null}>
               <ThreatDashboard />
             </Suspense>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════
+          SECTION: TECHNOLOGY RESILIENCE — feature row
+      ═══════════════════════════════════════════════════════ */}
+      <section className="py-32 bg-black relative overflow-hidden">
+        <div className="absolute -top-32 left-1/4 w-[600px] h-[600px] pointer-events-none opacity-20" style={{ background: "radial-gradient(circle, rgba(0,200,220,0.25) 0%, transparent 60%)", filter: "blur(100px)" }} />
+
+        <div className="max-w-[1400px] mx-auto px-6 md:px-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.92 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.9, ease: [0.22, 0, 0.36, 1] }}
+              className="relative aspect-square max-w-[520px] mx-auto w-full"
+            >
+              <motion.div
+                animate={{ rotate: 360 }}
+                transition={{ duration: 50, repeat: Infinity, ease: "linear" }}
+                className="absolute inset-0 rounded-full overflow-hidden border border-white/5 bg-black motion-rotate"
+              >
+                <Image
+                  src="/images/content/tech-resilience.webp"
+                  alt="Cybersecurity technology — circuit ring representing layered defense"
+                  fill
+                  sizes="(max-width: 1024px) 90vw, 520px"
+                  className="object-cover"
+                />
+              </motion.div>
+              <div className="absolute -inset-4 rounded-full pointer-events-none opacity-40" style={{ background: "radial-gradient(circle at center, rgba(0,200,220,0.15) 0%, transparent 60%)", filter: "blur(40px)" }} />
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.8, delay: 0.15 }}
+            >
+              <span className="text-[#00C8DC] text-[11px] uppercase tracking-[0.25em] font-medium">Engineering Resilience</span>
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-white mt-4 leading-[1.04] tracking-tight">
+                Technology,
+                <br />
+                <span className="text-[#00C8DC]">redefined.</span>
+              </h2>
+              <p className="text-[#A2A2A0] text-base md:text-lg mt-6 leading-relaxed max-w-xl">
+                From circuit-level hardening to AI-driven detection — we engineer the next generation
+                of cyber defense. Built for an environment where threats evolve faster than vendors
+                can patch.
+              </p>
+              <div className="grid grid-cols-2 gap-4 mt-8 max-w-md">
+                {[
+                  "AI-augmented threat hunting",
+                  "Hardware-rooted trust",
+                  "Quantum-ready cryptography",
+                  "Zero-trust by design",
+                ].map((item) => (
+                  <div key={item} className="flex items-start gap-2.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#00C8DC] mt-2 shrink-0" />
+                    <span className="text-white/80 text-sm leading-snug">{item}</span>
+                  </div>
+                ))}
+              </div>
+              <Link
+                href="/technology"
+                className="inline-flex items-center gap-2 mt-8 text-[#00C8DC] text-sm font-medium hover:gap-3 transition-all group"
+              >
+                Explore the stack
+                <span className="w-6 h-6 rounded-full bg-[#00C8DC] flex items-center justify-center group-hover:bg-[#00A0B0] transition-colors">
+                  <span className="text-black text-xs font-bold">&gt;</span>
+                </span>
+              </Link>
+            </motion.div>
           </div>
         </div>
       </section>

@@ -17,21 +17,22 @@ export default function SectionHeading({
 }: SectionHeadingProps) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6 }}
-      className={`mb-12 ${center ? "text-center" : ""}`}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: 0.7, ease: [0.22, 0, 0.36, 1] }}
+      className={`mb-14 ${center ? "text-center" : ""}`}
     >
-      <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[rgba(161,0,255,0.15)] bg-[rgba(161,0,255,0.04)] text-[#A100FF] text-[11px] uppercase tracking-[0.2em] font-medium mb-5">
-        <span className="w-1 h-1 rounded-full bg-[#A100FF]" />
+      <span className={`inline-flex items-center gap-2.5 text-[#A100FF] text-[10px] uppercase tracking-[0.32em] font-medium mb-6 ${center ? "" : ""}`}>
+        <span className="w-6 h-px bg-gradient-to-r from-transparent to-[#A100FF]" />
         {tag}
+        <span className="w-6 h-px bg-gradient-to-l from-transparent to-[#A100FF]" />
       </span>
-      <h2 className="text-3xl md:text-5xl font-semibold text-white mt-2 leading-[1.08] tracking-tight">
+      <h2 className="text-[clamp(1.875rem,4vw,3.5rem)] font-semibold text-white leading-[1.02] tracking-[-0.025em]">
         {title}
       </h2>
       {description && (
-        <p className="text-[#A2A2A0] mt-4 max-w-xl mx-auto leading-relaxed">
+        <p className="text-[#A2A2A0] mt-5 max-w-xl mx-auto leading-relaxed text-[15px]">
           {description}
         </p>
       )}

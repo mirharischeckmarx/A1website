@@ -29,6 +29,11 @@ export const metadata: Metadata = {
     description:
       "Full-spectrum cybersecurity: network protection, cloud security, application security, DLP, SIEM, SOAR, and 24/7 managed SOC services.",
     url: "https://a1tecno.com/services",
+    images: [{ url: "/og/services.png", width: 1200, height: 630, alt: "A1 Technology Services" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["/og/services.png"],
   },
   alternates: { canonical: "https://a1tecno.com/services" },
 };

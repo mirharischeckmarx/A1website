@@ -155,7 +155,7 @@ export default function HeroSection() {
                     { val: "5", lab: "Countries" },
                   ].map((s) => (
                     <div key={s.lab} className="text-center">
-                      <span className="text-[#00aaff] text-2xl md:text-3xl font-semibold block">{s.val}</span>
+                      <span className="text-[#00aaff] text-2xl md:text-3xl font-semibold block tabular">{s.val}</span>
                       <span className="text-[#4a6a8a] text-[10px] uppercase tracking-wider">{s.lab}</span>
                     </div>
                   ))}

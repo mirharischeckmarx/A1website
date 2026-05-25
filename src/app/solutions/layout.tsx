@@ -9,6 +9,11 @@ export const metadata: Metadata = {
     description:
       "Full-stack IT solutions: managed services, cloud migration, AI automation, cybersecurity, and custom software development for enterprises.",
     url: "https://a1tecno.com/solutions",
+    images: [{ url: "/og/solutions.png", width: 1200, height: 630, alt: "A1 Technology IT Solutions" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["/og/solutions.png"],
   },
   alternates: { canonical: "https://a1tecno.com/solutions" },
 };

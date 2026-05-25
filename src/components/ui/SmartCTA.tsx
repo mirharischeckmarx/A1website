@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 function getGreeting(): string {
   const hour = new Date().getHours();
@@ -30,8 +31,11 @@ function getSmartMessage(): string {
 }
 
 export default function SmartCTA() {
+  const pathname = usePathname();
   const [visible, setVisible] = useState(false);
   const [dismissed, setDismissed] = useState(false);
+
+  if (pathname?.startsWith("/preview")) return null;
 
   useEffect(() => {
     const onScroll = () => {

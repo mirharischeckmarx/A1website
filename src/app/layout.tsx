@@ -8,6 +8,10 @@ import DynamicBG from "@/components/ui/DynamicBGWrapper";
 import ScrollProgress from "@/components/ui/ScrollProgress";
 import BackToTop from "@/components/ui/BackToTop";
 import SmartCTA from "@/components/ui/SmartCTA";
+import BootIntro from "@/components/fx/BootIntro";
+import CommandPalette from "@/components/fx/CommandPalette";
+import ThreatTicker from "@/components/fx/ThreatTicker";
+import HackerMode from "@/components/fx/HackerMode";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -215,16 +219,17 @@ export default function RootLayout({
         <OrganizationJsonLd />
         <WebSiteJsonLd />
       </head>
-      <body className="min-h-full flex flex-col bg-black text-gray-200">
-        <ScrollProgress />
-        <Suspense fallback={null}>
-          <DynamicBG />
-        </Suspense>
+      <body className="min-h-full flex flex-col bg-black text-gray-200 pb-[30px]">
+        <a href="#main-content" className="skip-link">Skip to content</a>
+        <BootIntro />
         <Navbar />
-        <main className="flex-1 relative z-10">{children}</main>
+        <main id="main-content" className="flex-1 relative z-10">{children}</main>
         <Footer />
         <BackToTop />
         <SmartCTA />
+        <ThreatTicker />
+        <CommandPalette />
+        <HackerMode />
       </body>
     </html>
   );

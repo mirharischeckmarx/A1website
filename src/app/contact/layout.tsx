@@ -10,6 +10,11 @@ export const metadata: Metadata = {
     description:
       "Reach our cybersecurity experts across 5 global offices. 24/7 support available for enterprise security needs.",
     url: "https://a1tecno.com/contact",
+    images: [{ url: "/og/contact.png", width: 1200, height: 630, alt: "Contact A1 Technology" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["/og/contact.png"],
   },
   alternates: { canonical: "https://a1tecno.com/contact" },
 };

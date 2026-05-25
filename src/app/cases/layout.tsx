@@ -9,6 +9,11 @@ export const metadata: Metadata = {
     description:
       "Proven results: ransomware defense, zero-trust architecture, and healthcare compliance. Real-world success stories from banking, government, and healthcare sectors.",
     url: "https://a1tecno.com/cases",
+    images: [{ url: "/og/cases.png", width: 1200, height: 630, alt: "A1 Technology Case Studies" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["/og/cases.png"],
   },
   alternates: { canonical: "https://a1tecno.com/cases" },
 };

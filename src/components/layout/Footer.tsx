@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 const col1 = [
   { label: "About Us", href: "/about" },
@@ -19,6 +20,8 @@ const col2 = [
 ];
 
 export default function Footer() {
+  const pathname = usePathname();
+  if (pathname?.startsWith("/preview")) return null;
   return (
     <footer role="contentinfo" className="bg-black border-t border-white/5">
       <div className="max-w-[1920px] mx-auto px-6 md:px-12 lg:px-16 py-10">
