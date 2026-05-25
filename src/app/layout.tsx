@@ -92,6 +92,16 @@ export const metadata: Metadata = {
   category: "technology",
 };
 
+// Safely serialize JSON for inline <script> — prevents </script> breakout (CWE-79)
+function safeJson(obj: unknown): string {
+  return JSON.stringify(obj)
+    .replace(/</g, "\\u003c")
+    .replace(/>/g, "\\u003e")
+    .replace(/&/g, "\\u0026")
+    .replace(/ /g, "\\u2028")
+    .replace(/ /g, "\\u2029");
+}
+
 function OrganizationJsonLd() {
   const schema = {
     "@context": "https://schema.org",
@@ -179,7 +189,7 @@ function OrganizationJsonLd() {
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      dangerouslySetInnerHTML={{ __html: safeJson(schema) }}
     />
   );
 }
@@ -200,7 +210,7 @@ function WebSiteJsonLd() {
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      dangerouslySetInnerHTML={{ __html: safeJson(schema) }}
     />
   );
 }
