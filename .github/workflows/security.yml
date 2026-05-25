@@ -1,0 +1,115 @@
+name: Security
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  schedule:
+    # Re-scan weekly so we catch newly-disclosed CVEs even without code change
+    - cron: "17 5 * * 1"
+
+permissions:
+  contents: read
+  security-events: write
+  actions: read
+
+concurrency:
+  group: security-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  audit:
+    name: Dependency audit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+      - run: npm ci --ignore-scripts
+      - name: npm audit (fail on high+)
+        run: npm audit --omit=dev --audit-level=high
+
+  typecheck:
+    name: TypeScript
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+      - run: npm ci --ignore-scripts
+      - run: npx tsc --noEmit
+
+  lint:
+    name: ESLint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+      - run: npm ci --ignore-scripts
+      - run: npm run lint
+
+  codeql:
+    name: CodeQL
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: github/codeql-action/init@v3
+        with:
+          languages: javascript-typescript
+          queries: security-and-quality
+      - uses: github/codeql-action/analyze@v3
+        with:
+          category: "/language:javascript-typescript"
+
+  gitleaks:
+    name: Secret scan (gitleaks)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          config-path: .gitleaks.toml
+
+  headers:
+    name: Security headers smoke test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+      - run: npm ci --ignore-scripts
+      - run: npm run build
+      - name: Start server and probe headers
+        run: |
+          npx next start -p 4321 &
+          SERVER_PID=$!
+          # Wait until the server answers
+          for i in $(seq 1 30); do
+            curl -sf -o /dev/null http://localhost:4321/ && break
+            sleep 1
+          done
+          set -e
+          # Required headers — if any missing, fail the build
+          headers=$(curl -sI http://localhost:4321/)
+          echo "$headers"
+          echo "$headers" | grep -i "content-security-policy" >/dev/null
+          echo "$headers" | grep -i "strict-transport-security" >/dev/null
+          echo "$headers" | grep -i "x-frame-options" >/dev/null
+          echo "$headers" | grep -i "x-content-type-options" >/dev/null
+          echo "$headers" | grep -i "referrer-policy" >/dev/null
+          echo "$headers" | grep -i "permissions-policy" >/dev/null
+          kill $SERVER_PID

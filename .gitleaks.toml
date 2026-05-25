@@ -1,0 +1,45 @@
+# gitleaks config — extends the upstream default rule set with project-specific
+# allow-listing so the secret scanner doesn't false-positive on test fixtures.
+
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Project-wide allow-listed paths"
+paths = [
+  '''node_modules/.*''',
+  '''\.next/.*''',
+  '''public/og/.*\.svg''',
+  '''public/.*\.png''',
+  '''public/.*\.jpg''',
+  '''public/.*\.webp''',
+  '''public/.*\.svg''',
+  '''scripts/gen-og-image\.mjs''',
+  '''scripts/gen-tech-resilience\.mjs''',
+]
+
+# Custom rules in addition to the upstream defaults
+
+[[rules]]
+id = "anthropic-api-key"
+description = "Anthropic API key"
+regex = '''sk-ant-[A-Za-z0-9\-_]{20,}'''
+tags = ["key", "anthropic"]
+
+[[rules]]
+id = "openai-api-key"
+description = "OpenAI API key"
+regex = '''sk-[A-Za-z0-9]{32,}'''
+tags = ["key", "openai"]
+
+[[rules]]
+id = "vercel-token"
+description = "Vercel deployment token"
+regex = '''[Vv]ercel[_-]?[Tt]oken[\s:=]+['"]?[A-Za-z0-9]{24,}['"]?'''
+tags = ["key", "vercel"]
+
+[[rules]]
+id = "private-key-block"
+description = "PEM-encoded private key"
+regex = '''-----BEGIN ((RSA |EC |DSA |OPENSSH |PGP )?PRIVATE KEY)( BLOCK)?-----'''
+tags = ["key", "private"]
